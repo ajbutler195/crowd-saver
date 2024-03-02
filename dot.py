@@ -14,6 +14,15 @@ class Person:
         self.position = (self.position[0] + (self.velocity[0] / Person.granularity), self.position[1] + (self.velocity[1] / Person.granularity))
         return self.position
         
+class Pair:
+    def __init__(self, a, b):
+        self.a = a
+        self.b = b
 
+    def __add__(self):
+        return self.a + self.b
+
+    def __sub__(self):
+        return self.a - self.b
     
     

@@ -2,6 +2,7 @@ import math
 from dot import Person
 from random import *
 import numpy as np
+import pymunk
 
 BOX_WIDTH = 10
 BOX_HEIGHT = 10
@@ -62,7 +63,7 @@ def get_response_velocities(particle, other_particle):
 
 def compute_velocity(v1, v2, m1, m2, x1, x2):
     ref = np.array([[v1[0], v1[1]], [v2[0], v2[1]], [x1[0], x1[1]], [x2[0], x2[1]]])
-    comp = ref[0] - (2 * m2 / (m1 + m2)) * np.dot(ref[0] - ref[1], ref[2] - ref[3]) / np.linalg.norm(ref[2] - ref[3]) ** 2 * (ref[2] - ref[3])
+    comp = (v1[0], v1[1]) - (2 * m2 / (m1 + m2)) * np.dot((v1[0] - v2[0], v1[1] - v2[1]), (x1[0] - x2[0], x1[1]-x2[1])) / np.linalg.norm((x1[0] - x2[0], x1[1]-x2[1])) ** 2 * ((x1[0] - x2[0], x1[1]-x2[1]))
     comp_1 = v1[0] - (2 * m2 / (m1 + m2)) * np.dot(v1[0] - v2[0], x1[0] - x2[0]) / np.linalg.norm(x1[0] - x2[0]) ** 2 * (x1[0] - x2[0])
     comp_2 = v1[1] - (2 * m2 / (m1 + m2)) * np.dot(v1[1] - v2[1], x1[1] - x2[1]) / np.linalg.norm(x1[1] - x2[1]) ** 2 * (x1[1] - x2[1])
     return comp
