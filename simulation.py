@@ -1,15 +1,21 @@
 from dot import Person
+import math
 
 def run_simulation(people):
     for person in people:
         pass
 
+
 def generate_person() -> Person:
-    pass
+    return Person()
+
 
 def generate_people():
     pass
 
+
+def handle_collision(a, b):
+    pass
 
 
 if __name__ == "__main__":
